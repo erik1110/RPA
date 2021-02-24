@@ -6,13 +6,24 @@ github action crawler
 import pandas as pd
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 class Crawler:
     def __init__(self):
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
-        # 最近上櫃債券
+        #規避google bug
+        chrome_options = Options() 
+        chrome_options.add_argument('--headless')  #規避google bug
+        chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument("--disable-notifications")
+        chrome_options.add_argument("--disable-default-apps")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        if chrome_path is None:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
+        else:
+            browser = webdriver.Chrome(chrome_path,options=chrome_options)
         self.driver.get('https://www.tpex.org.tw/web/bond/publish/search/latest.php?l=zh-tw')
         self.driver.maximize_window()
+
 
     def main():
         df = pd.DataFrame()
