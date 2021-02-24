@@ -17,13 +17,9 @@ class Crawler:
         chrome_options.add_argument("--disable-notifications")
         chrome_options.add_argument("--disable-default-apps")
         chrome_options.add_argument("--disable-dev-shm-usage")
-        if chrome_path is None:
-            self.driver = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
-        else:
-            browser = webdriver.Chrome(chrome_path,options=chrome_options)
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
         self.driver.get('https://www.tpex.org.tw/web/bond/publish/search/latest.php?l=zh-tw')
         self.driver.maximize_window()
-
 
     def main():
         df = pd.DataFrame()
