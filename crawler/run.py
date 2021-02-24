@@ -9,6 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
 class Crawler:
+    '''
+    爬蟲測試
+    '''
     def __init__(self):
         #規避google bug
         chrome_options = Options() 
@@ -21,7 +24,7 @@ class Crawler:
         self.driver.get('https://www.tpex.org.tw/web/bond/publish/search/latest.php?l=zh-tw')
         self.driver.maximize_window()
 
-    def main():
+    def main(self):
         df = pd.DataFrame()
         try:
             tables = driver.find_elements_by_xpath('//*[@id="rpt_result"]/tbody/tr')
@@ -37,9 +40,6 @@ class Crawler:
         except:
             print("爬蟲失敗")
             return False
-    
-
-
 
 if __name__ == "__main__":
     pipeline = Crawler()
