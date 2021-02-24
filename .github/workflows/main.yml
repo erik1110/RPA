@@ -1,0 +1,37 @@
+
+name: my prototype
+
+# 觸發條件
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+  - cron: "0 14 * * *"
+jobs:
+  build:
+    name: Set up environment
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 38
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Install Google Chrome # Using shell script to install Google Chrome
+      run: |
+        chmod +x ./scripts/InstallChrome.sh
+        ./scripts/InstallChrome.sh   
+    - name: Crawler
+      run:
+        python crawler/run.py
+    # - name: rsync over ssh 
+    #   run: |
+    #     echo "${{secrets.GCP_OTP_KEY}}" > deploy_key
+    #     chmod 600 ./deploy_key # 改變 key 的 mod
+    #     rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -azrvh ./data/* ${{secrets.GCP_USERNAME}}@${{secrets.GCP_HOST}}:/home/${{secrets.GCP_USERNAME}}/reviews
