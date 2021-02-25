@@ -21,7 +21,7 @@ def sendmail3(email_user,email_pwd,subject,context,recipents,folder_path,filenam
     message.attach(MIMEText(context, "html"))
     
     # 增加附件
-    with open(f'{folder_path}/{filename}', "rb") as attachment:
+    with open(f'./{folder_path}/{filename}', "rb") as attachment:
       # Add file as application/octet-stream
       # Email client can usually download this automatically as attachment
       part = MIMEBase("application", "octet-stream")
