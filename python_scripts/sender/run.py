@@ -56,7 +56,7 @@ def sendmail3(email_user,email_pwd,subject,context,recipents,folder_path,filenam
         server.login(gmailUser, gmailPasswd)
         server.sendmail(message['From'], message['To'], text)
 
-if __name__='__main__':
+if __name__ == '__main__':
   email_user = '${{secrets.MAIL_USERNAME}}'
   email_pwd = '${{secrets.MAIL_PASSWORD}}'
   subject = 'Github Actions job result'
