@@ -38,8 +38,8 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 465
-        # username: ${{secrets.MAIL_USERNAME}}
-        # password: ${{secrets.MAIL_PASSWORD}}
+        username: ${{secrets.MAIL_USERNAME}}
+        password: ${{secrets.MAIL_PASSWORD}}
         subject: Github Actions job result
         # Read file contents as body:
         body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
