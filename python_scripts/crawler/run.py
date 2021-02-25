@@ -26,20 +26,16 @@ class Crawler:
 
     def main(self):
         df = pd.DataFrame()
-        try:
-            tables = driver.find_elements_by_xpath('//*[@id="rpt_result"]/tbody/tr')
-            for i, row in enumerate(tables):
-                data_list = row.find_elements_by_xpath('.//td')
-                df.loc[i, '債券代號'] = data_list[0].text
-                df.loc[i, '債券名稱'] = data_list[1].text
-                df.loc[i, '債券類別'] = data_list[2].text
-                df.loc[i, '發行日期'] = data_list[3].text
-            df.to_excel('./data/result.xlsx')
-            print("爬蟲完成")
-            return True
-        except:
-            print("爬蟲失敗")
-            return False
+        tables = self.driver.find_elements_by_xpath('//*[@id="rpt_result"]/tbody/tr')
+        for i, row in enumerate(tables):
+            data_list = row.find_elements_by_xpath('.//td')
+            df.loc[i, '債券代號'] = data_list[0].text
+            df.loc[i, '債券名稱'] = data_list[1].text
+            df.loc[i, '債券類別'] = data_list[2].text
+            df.loc[i, '發行日期'] = data_list[3].text
+        df.to_excel('./data/result.xlsx')
+        print("爬蟲完成")
+
 
 if __name__ == "__main__":
     pipeline = Crawler()
