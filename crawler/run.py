@@ -34,7 +34,7 @@ class Crawler:
                 df.loc[i, '債券名稱'] = data_list[1].text
                 df.loc[i, '債券類別'] = data_list[2].text
                 df.loc[i, '發行日期'] = data_list[3].text
-            df.to_excel('result.xlsx')
+            df.to_excel('./data/result.xlsx')
             print("爬蟲完成")
             return True
         except:
