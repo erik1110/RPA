@@ -65,10 +65,8 @@ jobs:
         username: ${{secrets.MAIL_USERNAME}}
         password: ${{secrets.MAIL_PASSWORD}}
         subject: Github Actions job result
-        # Literal body:
-        body: Build job of ${{github.repository}} completed successfully!
         # Read file contents as body:
-        body: file://README.md
+        body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
         to: ${{secrets.MAIL_ADDRESS}}
         from: Github Action
         # Optional content type (defaults to text/plain):
