@@ -42,7 +42,7 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: Github Actions job result
         # Literal body:
-        body: Build job of ${{github.repository}} completed successfully!
+        title: Build job of ${{github.repository}} completed successfully!
         # Read file contents as body:
         body: file://README.md
         to: ${{secrets.MAIL_USERNAME}}
