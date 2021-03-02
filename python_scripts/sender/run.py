@@ -47,6 +47,7 @@ if __name__ == '__main__':
   subject = 'Github Actions job result'
   context = '${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}'
   recipents = '${{secrets.MAIL_ADDRESS}}'
+  print("recipents:", recipents)
   folder_path = 'data'
   filename = 'result.xlsx'
   sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, filename)
