@@ -43,6 +43,8 @@ def sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, f
         print("寄信成功")
   
 if __name__ == '__main__':
+  recipents =  os.environ["MAIL_ADDRESS"]
+  print("recipents:", recipents)
   email_user = os.environ["MAIL_USERNAME"]
   email_pwd = os.environ["MAIL_PASSWORD"]
   subject = 'Github Actions job result'
