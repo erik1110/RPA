@@ -1,5 +1,6 @@
 import smtplib
 import ssl
+import os
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -42,11 +43,11 @@ def sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, f
         print("寄信成功")
   
 if __name__ == '__main__':
-  email_user = ${{secrets.MAIL_USERNAME}}
-  email_pwd = ${{secrets.MAIL_PASSWORD}}
+  email_user = os.environ["MAIL_USERNAME"]
+  email_pwd = os.environ["MAIL_PASSWORD"]
   subject = 'Github Actions job result'
-  context = '${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}'
-  recipents = ${{secrets.MAIL_ADDRESS}}
+  context =  'github actction 測試'
+  recipents =  os.environ["MAIL_ADDRESS"]
   folder_path = 'data'
   filename = 'result.xlsx'
   sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, filename)
