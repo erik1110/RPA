@@ -48,6 +48,7 @@ if __name__ == '__main__':
   subject = 'Github Actions job result'
   context =  'github actction 測試'
   recipents =  os.environ["MAIL_ADDRESS"]
+  print("recipents:", recipents)
   folder_path = 'data'
   filename = 'result.xlsx'
   sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, filename)
