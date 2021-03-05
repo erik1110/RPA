@@ -12,7 +12,7 @@ def sendmail3(email_user, email_pwd, subject, context, recipents, folder_path, f
     gmailPasswd = email_pwd
     message = MIMEMultipart()
     message['From'] = email_user
-    message['To'] = email_user    
+    message['To'] = recipents
     message['Subject'] = subject
     #message['Cc'] = cc
     #message['Bcc'] = cc
