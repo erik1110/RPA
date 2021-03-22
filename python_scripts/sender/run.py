@@ -31,7 +31,6 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
     gmailPasswd = email_pwd
     message = MIMEMultipart()
     message['From'] = email_user
-    message['To'] = recipents
     message['Subject'] = subject
     # Add cc
     if carbon_copy:
@@ -54,6 +53,8 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
             message.attach(part)
         # meassage to string
         text = message.as_string()
+        # recepients
+        message['To'] = recipents.split(';')
         # Sending
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
