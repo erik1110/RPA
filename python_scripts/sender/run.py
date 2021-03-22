@@ -32,9 +32,6 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
     message = MIMEMultipart()
     message['From'] = email_user
     message['Subject'] = subject
-    # Add cc
-    if carbon_copy:
-        message['Cc'] = carbon_copy
     try:
         # Add Body
         message.attach(MIMEText(context, "html"))
@@ -53,7 +50,10 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
             message.attach(part)
         # meassage to string
         text = message.as_string()
-        # recepients
+        # Add cc
+        if carbon_copy:
+            message['Cc'] = carbon_copy.split(';')
+        # Add recepients
         message['To'] = recipents.split(';')
         # Sending
         context = ssl.create_default_context()
