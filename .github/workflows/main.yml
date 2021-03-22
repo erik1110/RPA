@@ -8,8 +8,8 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-  - cron: "22 3 22 3 *" # At 23:50 on Thursday.
-  - cron: "25 3 22 3 *"  # At 23:50 on day-of-month 24.
+  - cron: "30 3 * * *" # At 23:50 on Thursday.
+  - cron: "33 3 * * *"  # At 23:50 on day-of-month 24.
 jobs:
   build:
     name: Set up environment
