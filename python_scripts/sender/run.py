@@ -73,4 +73,4 @@ if __name__ == '__main__':
     recipents =  os.environ["MAIL_ADDRESS"]
     carbon_copy = os.environ["MAIL_ADDRESS"]
     filepath = './data/result.xlsx'
-    sendmail3(email_user, email_pwd, subject, context, recipents, carbon_copy, filepath)
+    send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy, filepath)
