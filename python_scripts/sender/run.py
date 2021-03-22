@@ -31,11 +31,11 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
     gmailPasswd = email_pwd
     message = MIMEMultipart()
     message['From'] = email_user
-    message['To'] = ", ".join(recipents)
+    message['To'] = recipents
     message['Subject'] = subject
     # Add cc
     if carbon_copy:
-        message['Cc'] = ", ".join(carbon_copy)
+        message['Cc'] = carbon_copy
     try:
         # Add Body
         message.attach(MIMEText(context, "html"))
@@ -58,7 +58,7 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(gmailUser, gmailPasswd)
-            server.sendmail(message['From'], recipents, text)
+            server.sendmail(message['From'], recipents.split(";"), text)
             print("Sending email successfully")
             return True
     except Exception as error:
