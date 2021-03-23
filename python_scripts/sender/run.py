@@ -30,7 +30,7 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
     gmailUser = email_user
     gmailPasswd = email_pwd
     message = MIMEMultipart()
-    message['From'] = email_user
+    message['From'] = 'GITHUB ACTION'
     message['To'] = recipents
     message['Subject'] = subject
     # Add cc
@@ -58,7 +58,7 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(gmailUser, gmailPasswd)
-            server.sendmail(message['From'], recipents.split(";"), text)
+            server.sendmail(email_user, recipents.split(";"), text)
             print("Sending email successfully")
             return True
     except Exception as error:
