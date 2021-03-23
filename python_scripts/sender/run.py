@@ -69,7 +69,7 @@ if __name__ == '__main__':
     email_user = os.environ["MAIL_USERNAME"]
     email_pwd = os.environ["MAIL_PASSWORD"]
     subject = 'Github Actions job result'
-    context =  'github actction 測試'
+    context =  'TEST:123<br>TEST:456<br>TEST:789'
     recipents =  os.environ["MAIL_ADDRESS"]
     carbon_copy = os.environ["MAIL_ADDRESS"]
     filepath = './data/result.xlsx'
