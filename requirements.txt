@@ -3,3 +3,4 @@ requests>=2.23.0
 selenium>=3.141.0
 webdriver-manager>=3.3.0
 openpyxl==3.0.4
+pyinstaller
