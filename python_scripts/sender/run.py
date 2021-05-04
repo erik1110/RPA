@@ -30,7 +30,7 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
     gmailUser = email_user
     gmailPasswd = email_pwd
     message = MIMEMultipart()
-    message['From'] = email_user
+    message['From'] = 'GITHUB ACTION'
     message['To'] = recipents
     message['Subject'] = subject
     # Add cc
@@ -58,7 +58,7 @@ def send_mail(email_user, email_pwd, subject, context, recipents, carbon_copy=No
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
             server.login(gmailUser, gmailPasswd)
-            server.sendmail(message['From'], message['To'], text)
+            server.sendmail(email_user, recipents.split(";"), text)
             print("Sending email successfully")
             return True
     except Exception as error:
@@ -69,7 +69,12 @@ if __name__ == '__main__':
     email_user = os.environ["MAIL_USERNAME"]
     email_pwd = os.environ["MAIL_PASSWORD"]
     subject = 'Github Actions job result'
-    context =  'github actction 測試'
+    context =  '''
+                TEST1:123<br>
+                TEST2:123<br>
+                TEST3:123<br>
+                TEST4
+                '''
     recipents =  os.environ["MAIL_ADDRESS"]
     carbon_copy = os.environ["MAIL_ADDRESS"]
     filepath = './data/result.xlsx'
