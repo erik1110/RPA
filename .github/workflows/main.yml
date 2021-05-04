@@ -47,6 +47,7 @@ jobs:
       run:
         python python_scripts/sender/run.py
     - name: Create exe
+      run:
         pyinstaller -F ./python_scripts/crawler/run.py
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
