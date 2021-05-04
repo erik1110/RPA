@@ -46,9 +46,8 @@ jobs:
         JOB_STATUS: ${{ job.status }}
       run:
         python python_scripts/sender/run.py
-    - name: Create exe # Using shell script to install Google Chrome
-      run: |
-        chmod +x ./scripts/create_exe.sh
+    - name: Create exe
+        pyinstaller -F ./python_scripts/crawler/run.py
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
       with: 
