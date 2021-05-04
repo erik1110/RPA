@@ -8,8 +8,8 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-  - cron: "40 3 * * *" 
-#  - cron: "40 3 * * *" 
+  - cron: "35 3 * * *" # At 23:50 on Thursday.
+  - cron: "40 3 * * *"  # At 23:50 on day-of-month 24.
 jobs:
   build:
     name: Set up environment
@@ -46,22 +46,31 @@ jobs:
         JOB_STATUS: ${{ job.status }}
       run:
         python python_scripts/sender/run.py
+
+name: CI notify
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["CI build"]
+    types:
+      - completed
   archive-build-artifacts:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1 - Create a temporary artifact downloads folder
-        run: mkdir downloads
+      # - name: Step 1 - Create a temporary artifact downloads folder
+      #   run: mkdir downloads
         
-      - name: step 2 - Add artifacts to publish to the temp folder
-        run: |
-          cd downloads
-          echo 'alpha'    > alpha.html
-          echo 'bravo'    > bravo.html
-          echo 'charlie'  > charlie.html
-          cd ..
+      # - name: step 2 - Add artifacts to publish to the temp folder
+      #   run: |
+      #     cd downloads
+      #     echo 'alpha'    > alpha.html
+      #     echo 'bravo'    > bravo.html
+      #     echo 'charlie'  > charlie.html
+      #     cd ..
     
-      - name: Step 3 - Use the Upload Artifact GitHub Action
+      - name: Step 1 - Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
         with: 
           name: assets-for-download
-          path: downloads
+          path: data
