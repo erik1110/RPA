@@ -8,7 +8,8 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-  - cron: "0 14 * * *"
+  - cron: "35 3 * * *" # At 23:50 on Thursday.
+  - cron: "40 3 * * *"  # At 23:50 on day-of-month 24.
 jobs:
   build:
     name: Set up environment
@@ -34,6 +35,15 @@ jobs:
       run:
         python python_scripts/crawler/run.py
     - name: Send mail
+      env:
+        MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
+        MAIL_TEST: ${{ secrets.MAIL_TEST }}
+        GITHUB_JOB: ${{ github.job }}
+        GITHUB_WORKFLOW: ${{ github.workflow }}
+        GITHUB_REPO: ${{ github.repository }}
+        JOB_STATUS: ${{ job.status }}
       run:
         python python_scripts/sender/run.py
     - name: Create exe
