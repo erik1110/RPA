@@ -48,7 +48,6 @@ jobs:
         python python_scripts/sender/run.py
     - name: Create exe
       run:
-        cd ~
         python -m PyInstaller -F test.py
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
