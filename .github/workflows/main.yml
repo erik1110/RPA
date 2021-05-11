@@ -38,7 +38,7 @@ jobs:
         python python_scripts/sender/run.py
     - name: Create exe
       run:
-        python -m PyInstaller -F python_scripts/crawler/run.py
+        python -m PyInstaller -F test.py
     - name: Rename exe
       run:
         python rename.py
